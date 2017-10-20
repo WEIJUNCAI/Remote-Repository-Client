@@ -1,0 +1,131 @@
+
+<html>
+ <head>
+     <link rel="stylesheet" href="C:\Users\cgarr\Desktop\PublishedFiles\style.css">
+     <script src="C:\Users\cgarr\Desktop\PublishedFiles\collapse.js"></script>
+ </head>
+ <body>
+    <h3>CodePublisher.cpp</h3>
+    <hr />
+    <div class="indent">
+        <h4>Dependencies:</h4>
+         <p><a href="C:\Users\cgarr\Desktop\TestChannel\header1\CodePublisher.h.htm">CodePublisher.h</a></p>
+    </div>
+    <hr />
+  <pre>
+/////////////////////////////////////////////////////////////////////////////
+//  CodePublisher.cpp - publish source code in HTMLs                       //
+//  Language:     C++, VS 2015                                             //
+//  Platform:     SurfaceBook, Windows 10 Pro                              //
+//  Application:  Project1 for CSE687 - Object Oriented Design             //
+//  Author:       Weijun Cai                                               //
+/////////////////////////////////////////////////////////////////////////////
+
+#include CodePublisher.h
+
+void CodePublisher::PublishFile(Element&lt;std::string&gt;& file)
+<button id="btn12" onclick="collapse('body12', 'btn12')">-</button><span id="body12">{
+	std::ifstream ifs(file.name, std::ifstream::in);
+	std::ostringstream oss;
+	if (ifs.good())
+	<button id="btn16" onclick="collapse('body16', 'btn16')">-</button><span id="body16">{
+		Element&lt;std::string&gt; file_ = file;
+		file_.data = FileSystem::Path::getFullFileSpec(pubPath);
+		std::string htmlFullPath = pubPath + \\ + FileSystem::Path::getName(file.name) + .htm;
+		configureHTMLgenerator();
+		htmlGenerator.generateHTML(ifs, oss, FileSystem::Path::getFullFileSpec(stylePath), FileSystem::Path::getFullFileSpec(jsPath), &file_);
+		std::ofstream ofs(htmlFullPath, std::ofstream::out);
+		if (ofs.good())
+		<button id="btn24" onclick="collapse('body24', 'btn24')">-</button><span id="body24">{
+			ofs &lt;&lt; oss.str();
+			ofs.close();
+			ifs.close();
+			publishedFiles.push_back(htmlFullPath);
+		}</span>
+		else
+			throw std::exception(/nUnable to open file to write HTML);
+	}</span>
+	else
+		throw std::exception(/nUnable to open source file);
+}</span>
+
+void CodePublisher::PublishAll()
+<button id="btn35" onclick="collapse('body35', 'btn35')">-</button><span id="body35">{
+	for (auto & pair : *srcFileInfo)
+	<button id="btn37" onclick="collapse('body37', 'btn37')">-</button><span id="body37">{
+		PublishFile(pair.second);
+	}</span>
+}</span>
+
+void CodePublisher::setFileInfo(NoSqlDb&lt;std::string&gt;* fileDB)
+<button id="btn41" onclick="collapse('body41', 'btn41')">-</button><span id="body41">{
+	srcFileInfo = fileDB;
+}</span>
+
+void CodePublisher::setPublishPath(const std::string & path)
+<button id="btn45" onclick="collapse('body45', 'btn45')">-</button><span id="body45">{
+	pubPath = path;
+}</span>
+
+std::string CodePublisher::getPublishPath()
+<button id="btn49" onclick="collapse('body49', 'btn49')">-</button><span id="body49">{
+	return pubPath;
+}</span>
+
+
+
+void CodePublisher::setStylePath(const std::string& path)
+<button id="btn55" onclick="collapse('body55', 'btn55')">-</button><span id="body55">{
+	stylePath = path;
+}</span>
+
+std::string CodePublisher::getStylePath()
+<button id="btn59" onclick="collapse('body59', 'btn59')">-</button><span id="body59">{
+	return stylePath;
+}</span>
+
+void CodePublisher::setJavaScriptPath(const std::string & path)
+<button id="btn63" onclick="collapse('body63', 'btn63')">-</button><span id="body63">{
+	jsPath = path;
+}</span>
+
+std::string CodePublisher::getJavaScriptPath()
+<button id="btn67" onclick="collapse('body67', 'btn67')">-</button><span id="body67">{
+	return jsPath;
+}</span>
+
+void CodePublisher::configureHTMLgenerator()
+<button id="btn71" onclick="collapse('body71', 'btn71')">-</button><span id="body71">{
+	htmlGenerator.ConfigureGenerator();
+}</span>
+
+std::vector&lt;std::string&gt;& CodePublisher::getHTMLfiles()
+<button id="btn75" onclick="collapse('body75', 'btn75')">-</button><span id="body75">{
+	return publishedFiles;
+}</span>
+
+
+#ifdef TEST_PUBLISHER
+
+void main()
+<button id="btn82" onclick="collapse('body82', 'btn82')">-</button><span id="body82">{
+	CodePublisher publisher;
+	publisher.configureHTMLgenerator();
+	publisher.setPublishPath(C:\\Users\\cgarr\\Desktop);
+	publisher.setStylePath(C:\\Users\\cgarr\\Desktop\\style.css);
+
+	Element&lt;std::string&gt; fileInfo;
+
+	fileInfo.name = C:\\Users\\cgarr\\Desktop\\files\\Grandparent.h;
+	fileInfo.children.getRef().insert(C:\\Users\\cgarr\\Desktop\\files\\Parent.h);
+	publisher.PublishFile(fileInfo);
+
+}</span>
+
+#endif // TEST_PUBLISHER
+
+
+  </pre>
+
+ </body>
+</html>

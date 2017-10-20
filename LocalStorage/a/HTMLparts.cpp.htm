@@ -1,0 +1,253 @@
+
+<html>
+ <head>
+     <link rel="stylesheet" href="C:\Users\cgarr\Desktop\PublishedFiles\style.css">
+     <script src="C:\Users\cgarr\Desktop\PublishedFiles\collapse.js"></script>
+ </head>
+ <body>
+    <h3>HTMLparts.cpp</h3>
+    <hr />
+    <div class="indent">
+        <h4>Dependencies:</h4>
+         <p><a href="C:\Users\cgarr\Desktop\TestChannel\a\HTMLparts.h.htm">HTMLparts.h</a></p>
+         <p><a href="C:\Users\cgarr\Desktop\TestChannel\a\IHTML.h.htm">IHTML.h</a></p>
+    </div>
+    <hr />
+  <pre>
+/////////////////////////////////////////////////////////////////////////////
+//  HTMLparts.cpp - HTML genetator parts                                   //
+//  Language:     C++, VS 2015                                             //
+//  Platform:     SurfaceBook, Windows 10 Pro                              //
+//  Application:  Project1 for CSE687 - Object Oriented Design             //
+//  Author:       Weijun Cai                                               //
+/////////////////////////////////////////////////////////////////////////////
+
+
+#include &lt;queue&gt;
+#include &lt;set&gt;
+#include HTMLparts.h
+
+void HTMLhead::generateHead(std::istream & input, std::ostream & output, const std::string & style, const std::string& js)
+<button id="btn15" onclick="collapse('body15', 'btn15')">-</button><span id="body15">{
+	output &lt;&lt; \n &lt;head&gt;;
+	output &lt;&lt; \n     &lt;link rel=\stylesheet\ href=;
+	output &lt;&lt; \ &lt;&lt; style &lt;&lt; \ &lt;&lt; &gt;;
+	output &lt;&lt; &lt;script src=\ &lt;&lt; js &lt;&lt;\&gt;&lt;/script&gt;;
+	output &lt;&lt; \n &lt;/head&gt;;
+}</span>
+
+
+void DependencyPart::generateBodyPart(std::istream & input, std::ostream & output, Element&lt;std::string&gt;* info)
+<button id="btn24" onclick="collapse('body24', 'btn24')">-</button><span id="body24">{
+	output &lt;&lt; \n    &lt;h3&gt; &lt;&lt; FileSystem::Path::getName(info-&gt;name) &lt;&lt; &lt;/h3&gt;;
+	output &lt;&lt; \n    &lt;hr /&gt;;
+	output &lt;&lt; \n    &lt;div class=\indent\&gt;;
+	output &lt;&lt; \n        &lt;h4&gt;Dependencies:&lt;/h4&gt;;
+	for (auto & childFullPath : info-&gt;children.getRef())
+	<button id="btn30" onclick="collapse('body30', 'btn30')">-</button><span id="body30">{
+		std::string filename = FileSystem::Path::getName(childFullPath);
+		output &lt;&lt; \n         &lt;p&gt;&lt;a href=\ &lt;&lt; (info-&gt;data).getValue() + \\ + filename &lt;&lt; .htm\&gt; &lt;&lt; filename &lt;&lt; &lt;/a&gt;&lt;/p&gt;; // publish path is in data part
+	}</span>
+	output &lt;&lt; \n    &lt;/div&gt;;
+	output &lt;&lt; \n    &lt;hr /&gt;;
+}</span>
+
+void CodePart::generateBodyPart(std::istream & input, std::ostream & output, Element&lt;std::string&gt;* info)
+<button id="btn37" onclick="collapse('body37', 'btn37')">-</button><span id="body37">{
+	const unsigned int buffersize = 256;
+	char buffer[buffersize];
+
+	output &lt;&lt; \n  &lt;pre&gt;\n;
+	while (input.getline(buffer, buffersize).good())
+	<button id="btn43" onclick="collapse('body43', 'btn43')">-</button><span id="body43">{
+		std::string currLine(buffer);
+		processMarkupChars(currLine);
+		output &lt;&lt; currLine &lt;&lt; \n;
+	}</span>
+	output &lt;&lt; \n  &lt;/pre&gt;;
+	
+}</span>
+
+
+
+void CodePart::processMarkupChars(std::string & line)
+<button id="btn53" onclick="collapse('body53', 'btn53')">-</button><span id="body53">{
+	size_t markupCharPos_l;
+	size_t markupCharPos_r;
+	while ((markupCharPos_l = line.find(&lt;)) != (markupCharPos_r = line.find(&gt;)))
+	<button id="btn57" onclick="collapse('body57', 'btn57')">-</button><span id="body57">{
+		if (markupCharPos_l != std::string::npos)
+		<button id="btn59" onclick="collapse('body59', 'btn59')">-</button><span id="body59">{
+			line.erase(markupCharPos_l, 1);
+			line.insert(markupCharPos_l, &lt;);
+		}</span>
+		if (markupCharPos_r != std::string::npos)
+		<button id="btn63" onclick="collapse('body63', 'btn63')">-</button><span id="body63">{
+			// found &lt;, so the length of line changed 
+			if (markupCharPos_l != std::string::npos)
+			<button id="btn66" onclick="collapse('body66', 'btn66')">-</button><span id="body66">{
+				line.erase(markupCharPos_r + 3, 1);
+				line.insert(markupCharPos_r + 3, &gt;);
+			}</span>
+			else
+			<button id="btn70" onclick="collapse('body70', 'btn70')">-</button><span id="body70">{
+				line.erase(markupCharPos_r, 1);
+				line.insert(markupCharPos_r, &gt;);
+			}</span>
+		}</span>
+	}</span>
+}</span>
+
+
+void CodePartCollapse::generateBodyPart(std::istream & input, std::ostream & output, Element&lt;std::string&gt;* info)
+<button id="btn76" onclick="collapse('body76', 'btn76')">-</button><span id="body76">{
+	output &lt;&lt; \n  &lt;pre&gt;\n;
+	GenerateCollapse(input, output);
+	output &lt;&lt; \n  &lt;/pre&gt;\n;
+}</span>
+
+void CodePartCollapse::GenerateCollapse(std::istream & input, std::ostream & output)
+<button id="btn82" onclick="collapse('body82', 'btn82')">-</button><span id="body82">{
+	std::stack&lt;char&gt; quoteStack;
+	char c;
+	size_t lineCount = 1;
+	while (input.get(c).good())
+	<button id="btn87" onclick="collapse('body87', 'btn87')">-</button><span id="body87">{
+		if (processNormalChar(c, output, lineCount))
+			continue;
+		if (processQuoteChar(c, output, quoteStack))
+			continue;
+		if (!processScopeChar(c, input, output, quoteStack, lineCount))
+			throw std::exception(\n\nunknown character\n);
+	}</span>
+}</span>
+
+bool CodePartCollapse::processNormalChar(char c, std::ostream & output, size_t & lineCount)
+<button id="btn96" onclick="collapse('body96', 'btn96')">-</button><span id="body96">{
+	if (c !=  && c !=  && c != \ && c != \)
+	
+		if (c == \n)
+			++lineCount;
+		if (c == &lt;)
+			output &lt;&lt; &lt;;
+		else if (c == &gt;)
+			output &lt;&lt; &gt;;
+		else
+			output &lt;&lt; c;
+		return true;
+	
+	return false;
+
+
+bool CodePartCollapse::processQuoteChar(char c, std::ostream & output, std::stack&lt;char&gt;& quoteStack)
+
+	if (c == \ || c == \)
+	
+		if (quoteStack.size() &gt; 0 && c == quoteStack.top())
+			quoteStack.pop();
+		else
+			quoteStack.push(c);
+		return true;
+	
+	return false;
+
+
+bool CodePartCollapse::processScopeChar(char c, std::istream & input, std::ostream & output, std::stack&lt;char&gt;& quoteStack, size_t & lineCount)
+
+	if (quoteStack.size() == 0 && c == )
+	
+		std::string uniqueId, btnId;
+		std::ostringstream oss, oss2;
+		oss &lt;&lt; body &lt;&lt; lineCount;
+		uniqueId = oss.str();
+		oss2 &lt;&lt; btn &lt;&lt; lineCount;
+		btnId = oss2.str();
+		output &lt;&lt; &lt;button id=\ &lt;&lt; btnId &lt;&lt; \ onclick=\collapse(\ &lt;&lt; uniqueId &lt;&lt; \, \ &lt;&lt; btnId &lt;&lt; \)\&gt; &lt;&lt; - &lt;&lt; &lt;/button&gt;;
+		output &lt;&lt; &lt;span id=\ &lt;&lt; uniqueId &lt;&lt; \&gt;;
+		return true;
+	
+	if(quoteStack.size() == 0 && c == )
+	
+		char c2;
+		if (input.get(c2).good())
+		
+			if (c2 == ;)
+				output &lt;&lt; ;&lt;/span&gt;;
+			else
+				output &lt;&lt; &lt;/span&gt; &lt;&lt; c2;
+		
+		else
+			throw std::exception(\n\nError reading source file\n);;
+		return true;
+	
+	return false;
+
+
+
+
+
+void HTMLbody::generateBody(std::istream & input, std::ostream & output, Element&lt;std::string&gt;* info)
+
+	output &lt;&lt; \n &lt;body&gt;;
+	for (auto htmlPart : bodyParts)
+	
+		htmlPart-&gt;generateBodyPart(input, output, info);
+	
+	output &lt;&lt; \n &lt;/body&gt;;
+
+
+void HTMLbody::addBodyPart(IHTMLbodypart * body)
+
+	if (body != nullptr)
+		bodyParts.push_back(body);
+
+
+void HTMLbody::delBodyPart(IHTMLbodypart * body)
+
+	bodyParts.pop_back();
+
+
+void HTMLbody::clearBodyparts()
+
+	bodyParts.clear();
+
+
+HTMLbody::~HTMLbody()
+
+	for (auto part : bodyParts)
+	
+		delete part;
+	
+
+
+#ifdef TEST_HTMLPARTS
+
+void main()
+
+	HTMLhead head;
+	HTMLbody body;
+	DependencyPart* depPart = new DependencyPart();
+	CodePartCollapse* cdPart = new CodePartCollapse();
+	Element&lt;std::string&gt; file;
+	std::ofstream ofs(../HTMLtest/generate.htm, std::ofstream::out);
+	file.name = C:\\Users\\cgarr\\OneDrive\\Documents\\OOD\\P3\\HTMLtest\\Cpp11-BlockingQueue.cpp;
+	file.children.getRef().insert(C:\\Users\\cgarr\\OneDrive\\Documents\\OOD\\P3\\HTMLtest\\Cpp11-BlockingQueue.h);
+	file.data = C:\\Users\\cgarr\\OneDrive\\Documents\\OOD\\P3\\HTMLtest;
+	std::ifstream ifs(../HTMLtest/Cpp11-BlockingQueue.cpp, std::ifstream::in);
+	std::cout &lt;&lt; FileSystem::Directory::getCurrentDirectory() &lt;&lt; std::endl;
+	head.generateHead(ifs, ofs/*std::cout*/, style.css, collapse.js);
+	body.addBodyPart(depPart);
+	body.addBodyPart(cdPart);
+	body.generateBody(ifs, ofs/*std::cout*/, &file);
+	ifs.close();
+	system(pause);
+
+
+
+#endif // TEST_HTMLPARTS
+
+
+  </pre>
+
+ </body>
+</html>

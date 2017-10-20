@@ -1,0 +1,55 @@
+
+<html>
+ <head>
+     <link rel="stylesheet" href="C:\Users\cgarr\OneDrive\Documents\OOD\RemoteCodeRepository\PublishedFiles\style.css">
+     <script src="C:\Users\cgarr\OneDrive\Documents\OOD\RemoteCodeRepository\PublishedFiles\collapse.js"></script>
+ </head>
+ <body>
+    <h3>CLIshim.h</h3>
+    <hr />
+    <div class="indent">
+        <h4>Dependencies:</h4>
+    </div>
+    <hr />
+  <pre>
+#pragma once
+///////////////////////////////////////////////////////////////////////
+// CLIShim.h - C++\CLI layer is a proxy for calls into MockChannel   //
+//                                                                   //
+// Note:                                                             //
+//   - build as a dll so C# can load                                 //
+//   - link to MockChannel static library                            //
+//                                                                   //
+// Jim Fawcett, CSE687 - Object Oriented Design, Spring 2017         //
+///////////////////////////////////////////////////////////////////////
+
+
+#include &lt;string&gt;
+#include ../CommChannel/IComm.h
+
+using namespace System;
+
+public ref class myShim
+<button id="btn19" onclick="collapse('body19', 'btn19')">-</button><span id="body19">{
+public:
+	myShim(String^ rootDir, uint32_t serverPort, uint16_t ipVer);
+
+	bool start_server();
+	bool connect_to_server(String^ ip, uint32_t port);
+
+	void PostMessage(String^ msg);
+	String^ GetMessage();
+	String^ stdStrToSysStr(const std::string& str);
+	std::string sysStrToStdStr(String^ str);
+
+private:
+	ISendr* pISendr;
+	IRecvr* pIRecvr;
+	IChannel* pChan;
+
+};</span>
+
+  </pre>
+
+ </body>
+</html>

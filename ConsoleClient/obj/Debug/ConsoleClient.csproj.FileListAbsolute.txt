@@ -1,0 +1,20 @@
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\ConsoleClient.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\CLIShim.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\obj\Debug\ConsoleClient.csprojResolveAssemblyReference.cache
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\obj\Debug\ConsoleClient.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\CLIShim.dll
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\HttpMessageCS.dll
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\HttpMessageCS.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\ConsoleClient.exe.config
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\bin\Debug\ConsoleClient.exe
+C:\Users\cgarr\OneDrive\Documents\OOD\P4 help\CSharpCliShim-WPF-App\ConsoleClient\obj\Debug\ConsoleClient.exe
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\ConsoleClient.exe.config
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\ConsoleClient.exe
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\ConsoleClient.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\CLIshim.dll
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\HttpMessageCS.dll
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\CLIshim.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\bin\Debug\HttpMessageCS.pdb
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\obj\Debug\ConsoleClient.csprojResolveAssemblyReference.cache
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\obj\Debug\ConsoleClient.exe
+C:\Users\cgarr\OneDrive\Documents\OOD\RemoteClient\ConsoleClient\obj\Debug\ConsoleClient.pdb

@@ -1,0 +1,16 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly CLIshim, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class myShim: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String, UInt32, UInt16): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    start_server(): PrivateScope, Public, HideBySig
+    connect_to_server(String, UInt32): PrivateScope, Public, HideBySig
+    PostMessage(String): PrivateScope, Public, HideBySig
+    GetMessage(): PrivateScope, Public, HideBySig
+    stdStrToSysStr(basic_string<char\,std::char_traits<char>\,std::allocator<char> >* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    sysStrToStdStr(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, String): PrivateScope, Public, HideBySig

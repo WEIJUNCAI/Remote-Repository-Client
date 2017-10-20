@@ -1,0 +1,92 @@
+
+<html>
+ <head>
+     <link rel="stylesheet" href="C:\Users\cgarr\Desktop\PublishedFiles\style.css">
+     <script src="C:\Users\cgarr\Desktop\PublishedFiles\collapse.js"></script>
+ </head>
+ <body>
+    <h3>HTMLgenerator.cpp</h3>
+    <hr />
+    <div class="indent">
+        <h4>Dependencies:</h4>
+         <p><a href="C:\Users\cgarr\Desktop\TestChannel\a\HTMLgenerator.h.htm">HTMLgenerator.h</a></p>
+         <p><a href="C:\Users\cgarr\Desktop\TestChannel\a\HTMLparts.h.htm">HTMLparts.h</a></p>
+         <p><a href="C:\Users\cgarr\Desktop\TestChannel\a\IHTML.h.htm">IHTML.h</a></p>
+    </div>
+    <hr />
+  <pre>
+/////////////////////////////////////////////////////////////////////////////
+//  HTMLgenerator.cpp - generate HTML file                                 //
+//  Language:     C++, VS 2015                                             //
+//  Platform:     SurfaceBook, Windows 10 Pro                              //
+//  Application:  Project1 for CSE687 - Object Oriented Design             //
+//  Author:       Weijun Cai                                               //
+/////////////////////////////////////////////////////////////////////////////
+
+#include HTMLgenerator.h
+
+HTMLgenerator::HTMLgenerator() : head(nullptr), body(nullptr)
+<button id="btn12" onclick="collapse('body12', 'btn12')">-</button><span id="body12">{}</span>
+
+void HTMLgenerator::generateHTML(std::istream & input, std::ostream & output, const std::string & style, const std::string& js, Element&lt;std::string&gt;* info)
+<button id="btn14" onclick="collapse('body14', 'btn14')">-</button><span id="body14">{
+	output &lt;&lt; \n&lt;html&gt;;
+	if (head != nullptr)
+		head-&gt;generateHead(input, output, style, js);
+	if (body != nullptr)
+		body-&gt;generateBody(input, output, info);
+	output &lt;&lt; \n&lt;/html&gt;;
+}</span>
+
+void HTMLgenerator::ConfigureGenerator()
+<button id="btn23" onclick="collapse('body23', 'btn23')">-</button><span id="body23">{
+	if (head == nullptr)
+		head = new HTMLhead();
+	if (body == nullptr)
+	<button id="btn27" onclick="collapse('body27', 'btn27')">-</button><span id="body27">{
+		body = new HTMLbody();
+		body-&gt;addBodyPart(new DependencyPart());
+		body-&gt;addBodyPart(new CodePartCollapse());
+	}</span>
+}</span>
+
+void HTMLgenerator::ConfigureGenerator(IHTMLhead * head_, IHTMLbody * body_)
+<button id="btn33" onclick="collapse('body33', 'btn33')">-</button><span id="body33">{
+	head = head_;
+	body = body_;
+}</span>
+
+HTMLgenerator::~HTMLgenerator()
+<button id="btn38" onclick="collapse('body38', 'btn38')">-</button><span id="body38">{
+	if (head != nullptr)
+		delete head;
+	if (body != nullptr)
+		delete body;
+}</span>
+
+
+#ifdef TESTGENERATOR
+
+void main()
+<button id="btn48" onclick="collapse('body48', 'btn48')">-</button><span id="body48">{
+	HTMLgenerator generator;
+	generator.ConfigureGenerator();
+	Element&lt;std::string&gt; file;
+	std::ofstream ofs(../HTMLtest/generate.htm, std::ofstream::out);
+	file.name = C:\\Users\\cgarr\\OneDrive\\Documents\\OOD\\P3\\HTMLtest\\Cpp11-BlockingQueue.cpp;
+	file.children.getRef().insert(C:\\Users\\cgarr\\OneDrive\\Documents\\OOD\\P3\\HTMLtest\\Cpp11-BlockingQueue.h);
+	file.data = C:\\Users\\cgarr\\OneDrive\\Documents\\OOD\\P3\\HTMLtest;
+	std::ifstream ifs(../HTMLtest/Cpp11-BlockingQueue.cpp, std::ifstream::in);
+	std::cout &lt;&lt; FileSystem::Directory::getCurrentDirectory() &lt;&lt; std::endl;
+	generator.generateHTML(ifs, ofs, style.css, &file);
+
+	system(pause);
+}</span>
+
+#endif // TESTGENERATOR
+
+
+  </pre>
+
+ </body>
+</html>

@@ -1,0 +1,120 @@
+﻿<Window x:Class="ClientGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="605.939" Width="776.294"
+        Loaded="Window_Loaded"
+        Unloaded="Window_Unloaded">
+    <Grid>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="579" VerticalAlignment="Top" Width="772" Margin="0,0,-0.4,-0.2">
+            <TabItem Header="Home" Margin="0,0,-3.8,-2">
+                <StackPanel Background="#FFE5E5E5" Margin="0,2,-1.2,-1">
+                    <ToolBar x:Name="toolBar" VerticalAlignment="Top" RenderTransformOrigin="0.005,-0.48" Height="49" Margin="0,0,0.2,0">
+                        <Button x:Name="connectBtn" Content="Connect to repository port" Click="connectBtn_Click" Height="44" VerticalAlignment="Top" Width="157"/>
+                        <TextBox x:Name="txtBox_portNum" Margin="0,11" Width="44" Text="8080"/>
+                        <Separator/>
+                        <Button x:Name="disconnectBtn" Content="Disconnect" Margin="0,10,0,5" Click="disconnectBtn_Click" Width="158" Height="29"/>
+                        <Separator/>
+                        <Button x:Name="setRootPathBtn" Width="149" Content="Set local root path" Margin="0,10,0,5" Height="29" Click="setRootPathBtn_Click"/>
+                        <TextBox x:Name="userSetRootPath" Margin="0,11" Width="194"/>
+                    </ToolBar>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label FontSize="16" FontWeight="Bold" Height="35" Background="White" Content="Repository Messages"/>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <ListBox x:Name="txtListBox_repoMsg" FontFamily="consolas"  Height="464" Background="White" Margin="0,0,0.2,0"/>
+                            </ScrollViewer>
+                        </StackPanel>
+                        <GridSplitter Grid.Column ="0" Width ="5" Background ="Gray"/>
+                        <StackPanel Grid.Column="1">
+                            <Label FontSize="16" FontWeight="Bold" Height="35" Background="White" Content="Client Messages"/>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <ListBox x:Name="txtListBox_clientMsg" FontFamily="consolas"  Height="464" Background="White" Margin="0,0,0.2,0"/>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Files" Margin="5.8,0,-21.6,-2" RenderTransformOrigin="3.335,-0.309">
+                <Grid Background="#FFE5E5E5" Margin="0,2,1,-0.8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GridSplitter Grid.Column ="0" Width ="5" Background ="Gray" />
+                    <StackPanel Grid.Column="0">
+                        <Label FontSize="16" FontWeight="Bold">File Uplaod</Label>
+
+                        <Separator Height="10"/>
+                        <StackPanel Orientation="Horizontal" Height="101">
+                            <Label FontSize="13" VerticalAlignment="Center" DockPanel.Dock="Left" Width="72" Margin="0,37,0,36.8">File Path</Label>
+
+                            <TextBox Name="txt_uploadPath" DockPanel.Dock="Bottom" TextAlignment="Center" Width="255" Height="28" Margin="0,36,0,0" VerticalAlignment="Top"></TextBox>
+                            <Button x:Name="btn_getUploadPath" Width="45" Click="btn_getUploadPath_Click" Height="33" Content="Browse" Margin="0,34,0,33.8"/>
+
+                        </StackPanel>
+                        <DockPanel Height="50" Margin="0,0,-0.2,0">
+                            <Label FontSize="13" VerticalAlignment="Center" DockPanel.Dock="Left" Width="68">Category</Label>
+                            <TextBox Name="fileUploadCategory" TextAlignment="Center" DockPanel.Dock="Right" Width="140" Margin="0,11"/>
+                        </DockPanel>
+                        <Grid Height="140">
+                            <Button x:Name="btn_fileUpload" Margin="70,72,74,35" Content="Upload" Click="btn_fileUpload_Click"/>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="0.6,0,-0.2,0">
+                        <Label FontSize="16" FontWeight="Bold">File Download</Label>
+                        <Separator Height="10"/>
+                        <DockPanel Height="95">
+                            <Label DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="13">File Name</Label>
+                            <TextBox Name="fileDownloadName" TextAlignment="Center"  VerticalAlignment="Center" Margin="0,10,0,9.2" Width="149" Height="28"/>
+                        </DockPanel>
+                        <DockPanel Height="65" Margin="0,0,0.2,0">
+                            <Label FontSize="13" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,18,0,17.8" Width="71">Category</Label>
+                            <TextBox Name="fileDownloadCategory" TextAlignment="Center" DockPanel.Dock="Right" VerticalAlignment="Center" Height="29" Margin="0,18,0,17.8" Width="150"/>
+                        </DockPanel>
+                        <DockPanel Height="70">
+                            <Label FontSize="13" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,21,0,20" Width="81">Destination</Label>
+                            <TextBox Name="txt_localSavePath" TextAlignment="Center" Margin="0,21,0,20" Width="290" Height="29" VerticalAlignment="Center" DockPanel.Dock="Right"></TextBox>
+                        </DockPanel>
+                        <Grid Height="93" Margin="0,0,0.2,0">
+                            <Button Name="btn_fileDownload" Margin="77,23,68.8,35" Click="btn_fileDownload_Click">Download</Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Category" Margin="0,0,-20.6,-2" HorizontalAlignment="Right" Width="64">
+                <StackPanel Background="#FFE5E5E5">
+                    <ToolBar Height="43" Margin="0,0,-0.2,0">
+                        <Button Name="btn_getAllCategories" FontSize="15" Height="43" Margin="0,0,0,-4.6" Click="btn_getAllCategories_Click" Width="176">Get all categories</Button>
+                        <Separator/>
+                        <Button Name="btn_getFileInCategory" FontSize="15" Margin="0,0,0,-4.6" Width="195" Height="43" Click="btn_getFileInCategory_Click">Get files in category:</Button>
+                        <TextBox Name="txt_categoryToGetFiles" TextAlignment="Center" Margin="0,10,0,5.4" Width="144" Height="23" VerticalAlignment="Center"/>
+                    </ToolBar>
+                    <TreeView>
+                        <TreeViewItem Name="tree_categories" Header="All categories" Height="506" IsExpanded="True">
+                            <StackPanel Name="stack_Category1" Orientation="Horizontal">
+                                <TreeViewItem Name="treeItem_category1" Header="Category1">
+                                    <DockPanel Name="Category1_File1">
+                                        <Label Name="labl_File1" DockPanel.Dock="Left">File1</Label>
+                                        <Button Name="btn_viewHtml" DockPanel.Dock="Right" Width="92" Click="btn_viewHtml_Click">View in browser</Button>
+                                        <Button Name="btn_remvFileFromRepo" DockPanel.Dock="Right" Click="btn_remvFileFromRepo_Click">Delete from Repository</Button>
+                                        <Button Name="btn_downloadHTML_File1" DockPanel.Dock="Right" Click="btn_downloadHTML_Click" >Download</Button>
+                                    </DockPanel>
+                                </TreeViewItem>
+                                <Button Name="btn_analyzePub_Category1" Click="btn_analyzePub_Click">Analyze</Button>
+                            </StackPanel>
+                        </TreeViewItem>
+                    </TreeView>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
